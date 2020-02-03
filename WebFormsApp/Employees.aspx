@@ -7,7 +7,7 @@
     <title></title>
     <style>
         #info{
-            display:none;
+            /*display:none;*/
         }
          #employee{
             border: solid 1pt black;
