@@ -156,5 +156,10 @@ namespace WebFormsApp
         {
 
         }
+
+        protected void ListView1_ItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+
+        }
     }
 }

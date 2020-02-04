@@ -49,7 +49,7 @@
             <br />
             <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Add_Customer" />
         </div>
-        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound" OnItemEditing="ListView1_ItemEditing">
+        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound" OnItemEditing="ListView1_ItemEditing" OnItemDeleting="ListView1_ItemDeleting">
 
             <ItemTemplate>
 

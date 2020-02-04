@@ -57,7 +57,7 @@
         </div>
 
 
-        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound" OnItemEditing="ListView1_ItemEditing">
+        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound" OnItemEditing="ListView1_ItemEditing" OnItemDeleting="ListView1_ItemDeleting">
 
             <ItemTemplate>
 
