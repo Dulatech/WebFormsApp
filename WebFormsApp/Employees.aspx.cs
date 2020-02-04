@@ -96,21 +96,41 @@ namespace WebFormsApp
 
         void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            String str = (String)e.CommandName;
-
-            string[] words = str.Split(',');
-           
+            string id = (string)e.CommandArgument;
+            string stmtString = "";
+            switch (e.CommandName)
+            {
+                case "Delete":
+                    stmtString = "DELETE FROM Employee WHERE ID ='" + id + "'";
+                    break;
+                case "Edit":
+                    ListViewItem item = e.Item as ListViewItem;
+                    string newName = ((TextBox)item.FindControl("EditName")).Text;
+                    string newAddress = ((TextBox)item.FindControl("EditAddress")).Text;
+                    string newManager = ((TextBox)item.FindControl("EditManager")).Text;
+                    string newTitle = ((TextBox)item.FindControl("EditTitle")).Text;
+                    string newCrt = ((TextBox)item.FindControl("EditCrt")).Text;
+                    DateTime newDate = DateTime.Parse(((TextBox)item.FindControl("EditStartDate")).Text);
+                    string newDateS = newDate.ToString("yyyy-MM-dd");
+                    string newSal = ((TextBox)item.FindControl("EditSalary")).Text;
+                    stmtString = "UPDATE Employee SET Name='" + newName + "'" +
+                        ", Address='" + newAddress + "'" +
+                        ", ManagerID='" + newManager + "'" +
+                        ", JobTitle='" + newTitle + "'" +
+                        ", CertifiedFor='" + newCrt + "'" +
+                        ", StartDate=DATE'" + newDateS + "'" +
+                        ", Salary='" + newSal + "'" +
+                        " WHERE ID='" + id + "'";
+                    break;
+            }
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
             OdbcConnection myConn = new OdbcConnection(myConnection);
             myConn.Open();
-            string mySelectQuery = "DELETE FROM Employee WHERE ID ='" + words[0] + "'";
-            OdbcCommand command = new OdbcCommand(mySelectQuery, myConn);
+            OdbcCommand command = new OdbcCommand(stmtString, myConn);
             command.ExecuteNonQuery();
-
             command.Connection.Close();
             myConn.Close();
             Load_List();
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -139,10 +159,14 @@ namespace WebFormsApp
             {
                
                 DateTime bytes2 = (DateTime)(e.Item.DataItem as DataRowView)["StartDate"];
-                (e.Item.FindControl("Date") as TextBox).Text = String.Format("{0:yyyy-MM-dd}", bytes2);
+                (e.Item.FindControl("EditStartDate") as TextBox).Text = String.Format("{0:yyyy-MM-dd}", bytes2);
 
             }
         }
 
+        protected void ListView1_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+
+        }
     }
 }
