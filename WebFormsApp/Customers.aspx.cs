@@ -173,5 +173,10 @@ namespace WebFormsApp
         {
             System.Diagnostics.Debug.WriteLine("Item Editing");
         }
+
+        protected void ListView1_ItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+
+        }
     }
 }
