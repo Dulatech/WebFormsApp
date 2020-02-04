@@ -14,7 +14,6 @@
         <asp:Button ID="Button1" runat="server" Text="Customers" OnClick="Button1_Click" />
         <asp:Button ID="Button2" runat="server" Text="Employees" OnClick="Button2_Click" />
         <asp:Button ID="Button3" runat="server" Text="Services" OnClick="Button3_Click" />
-        <asp:Button ID="Button4" runat="server" Text="CustomerServices" OnClick="Button4_Click" />
         <br />
         <br />
         <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>

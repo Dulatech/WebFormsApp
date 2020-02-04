@@ -138,6 +138,14 @@ namespace WebFormsApp
                         ", Gender='" + newGender + "'" +
                         " WHERE ID='" + id + "'";
                     break;
+                case "Transport":
+                    String str = id;
+
+                    string[] words = str.Split(',');
+                    Session["CustID"] = words[0];
+                    Session["CustName"] = words[1];
+                    Response.Redirect("CustomerServices.aspx");
+                    break;
             }
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
             OdbcConnection myConn = new OdbcConnection(myConnection);
@@ -164,13 +172,9 @@ namespace WebFormsApp
             Response.Redirect("Services.aspx");
         }
 
-        protected void Button4_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CustomerServices.aspx");
-        }
-
         protected void ListView1_ItemEditing(object sender, ListViewEditEventArgs e)
         {
+
             System.Diagnostics.Debug.WriteLine("Item Editing");
         }
 

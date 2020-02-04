@@ -27,7 +27,6 @@
          <asp:Button ID="Button3" formnovalidate="formnovalidate" runat="server" Text="Customers" OnClick="Button1_Click" />
         <asp:Button ID="Button4" formnovalidate="formnovalidate" runat="server" Text="Employees" OnClick="Button2_Click" BackColor="#CCCCCC" />
         <asp:Button ID="Button5" formnovalidate="formnovalidate" runat="server" Text="Services" OnClick="Button3_Click" />
-        <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" Text="CustomerServices" OnClick="Button4_Click" />
         <br />
         <br />
         <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>

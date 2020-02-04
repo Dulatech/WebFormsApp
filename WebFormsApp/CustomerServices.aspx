@@ -27,15 +27,13 @@
          <asp:Button ID="Button3" formnovalidate="formnovalidate" runat="server" Text="Customers" OnClick="Button1_Click" />
         <asp:Button ID="Button4" formnovalidate="formnovalidate" runat="server" Text="Employees" OnClick="Button2_Click" />
         <asp:Button ID="Button5" formnovalidate="formnovalidate" runat="server" Text="Services" OnClick="Button3_Click" />
-        <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" Text="CustomerServices" OnClick="Button4_Click" BackColor="#CCCCCC" />
+        <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" Text="CustomerServices" BackColor="#CCCCCC" />
         <br />
         <br />
         <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
-            <asp:TextBox ID="TextBox1" placeholder="Customer ID" runat="server" required="required"></asp:TextBox>
-            <br />
             <asp:TextBox ID="TextBox2" placeholder="Service ID" runat="server" required="required"></asp:TextBox>
             <br />
             <asp:TextBox ID="TextBox3" placeholder="Expected Time (Minutes)" runat="server" required="required"></asp:TextBox>
@@ -46,6 +44,10 @@
             <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Add_Customer" />
             <br />
         </div>
+        <br />
+         <asp:Label ID="Label4" runat="server" Text="Customer: "></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text='Label'> </asp:Label>
+        <br />
         <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDeleting="ListView1_ItemDeleting" >
 
             <ItemTemplate>
@@ -53,9 +55,6 @@
 
                 <div id="custServ">
                     <div id="basics">
-
-                        <asp:Label ID="Lab" runat="server" Text='<%# Eval("CustomerID") %>'> </asp:Label>
-                        <br>
                         <asp:Label ID="Label2" runat="server" Text='<%# Eval("ServiceTypeID") %>'> </asp:Label>
                         <br>
                         <%-- <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details" />--%>
@@ -63,8 +62,6 @@
                         <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName='<%#Eval("CustomerID") + "," +  Eval("ServiceTypeID") %>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
                     </div>
                     <div class="info" id="info">
-                        <br>
-                        <asp:TextBox ID="TextBox4" runat="server" placeholder='<%# Eval("CustomerID") %>'> </asp:TextBox>
                         <br>
                         <asp:TextBox runat="server" placeholder='<%# Eval("ServiceTypeID") %>'></asp:TextBox>
                         <br>

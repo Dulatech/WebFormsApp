@@ -25,7 +25,6 @@
         <asp:Button ID="Button3" formnovalidate="formnovalidate" runat="server" Text="Customers" OnClick="Button1_Click" BackColor="#CCCCCC" />
         <asp:Button ID="Button4" formnovalidate="formnovalidate" runat="server" Text="Employees" OnClick="Button2_Click" />
         <asp:Button ID="Button5" formnovalidate="formnovalidate" runat="server" Text="Services" OnClick="Button3_Click" />
-        <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" Text="CustomerServices" OnClick="Button4_Click" />
         <br />
         <br />
         <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>
@@ -62,6 +61,7 @@
                         <%-- <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details" />--%>
                         <button type="button" id="ButtonDet" onclick="details(this)">Details</button>
                         <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName="Delete" CommandArgument='<%#Eval("ID")%>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
+                    <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" CommandName="Transport" CommandArgument='<%#Eval("ID")+ "," +  Eval("Name")%>' Text="CustomerServices" />
                     </div>
                     <div class="info" id="info" style="display: none;">
                         <br>

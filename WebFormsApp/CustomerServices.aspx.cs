@@ -23,13 +23,15 @@ namespace WebFormsApp
             if (!Page.IsPostBack)
             {
                 string userID = Session["UserID"].ToString();
-            if (userID == null || userID == "")
+                string name = Session["CustName"].ToString();
+                if (userID == null || userID == "")
             {
                 return;
             }
             else
             {
                 Label1.Text = userID;
+                    Label2.Text = name;
             }
                 Load_List();
             }
@@ -40,7 +42,7 @@ namespace WebFormsApp
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
             OdbcConnection myConn = new OdbcConnection(myConnection);
             myConn.Open();
-            string mySelectQuery = "Select CustomerID, ServiceTypeID, ExpectedDuration from CustomerService ORDER BY CustomerID";
+            string mySelectQuery = "Select CustomerID, ServiceTypeID, ExpectedDuration from CustomerService WHERE CustomerID ='" + Session["CustID"].ToString() + "'";
             OdbcCommand command = new OdbcCommand(mySelectQuery, myConn);
 
 
@@ -60,7 +62,7 @@ namespace WebFormsApp
         {
 
 
-            string custID = TextBox1.Text;
+
             string servID = TextBox2.Text;
             string dur = TextBox3.Text;
 
@@ -73,7 +75,7 @@ namespace WebFormsApp
             command.Connection = connection;
             command.Transaction = transaction;
 
-            command.CommandText = "INSERT INTO CustomerService VALUES ('" + custID + "', '" + servID + "', '" + dur + "')";
+            command.CommandText = "INSERT INTO CustomerService VALUES ('" + Session["CustID"].ToString() + "', '" + servID + "', '" + dur + "')";
 
             command.ExecuteNonQuery();
             transaction.Commit();
@@ -99,7 +101,7 @@ namespace WebFormsApp
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
             OdbcConnection myConn = new OdbcConnection(myConnection);
             myConn.Open();
-            string mySelectQuery = "DELETE FROM CustomerService WHERE CustomerID ='" + words[0] + "'AND ServiceTypeID = '" + words[1] + "'";
+            string mySelectQuery = "DELETE FROM CustomerService WHERE CustomerID ='" + Session["CustID"].ToString() + "'AND ServiceTypeID = '" + words[1] + "'";
             OdbcCommand command = new OdbcCommand(mySelectQuery, myConn);
             command.ExecuteNonQuery();
 
@@ -125,10 +127,7 @@ namespace WebFormsApp
             Response.Redirect("Services.aspx");
         }
 
-        protected void Button4_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CustomerServices.aspx");
-        }
+
 
         protected void ListView1_ItemDeleting(object sender, ListViewDeleteEventArgs e)
         {
