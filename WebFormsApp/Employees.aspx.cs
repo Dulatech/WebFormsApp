@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Odbc;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 
 namespace WebFormsApp
 {
@@ -36,8 +29,6 @@ namespace WebFormsApp
 
         protected void Add_Customer(object sender, EventArgs e)
         {
-            
-
             string name = TextBox1.Text;
             string address = TextBox2.Text;
             string managerID = TextBox3.Text;
@@ -48,24 +39,21 @@ namespace WebFormsApp
             string sal = TextBox7.Text;
 
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
-                    OdbcConnection connection = new OdbcConnection(myConnection);
-                    connection.Open();
-                    OdbcCommand command = new OdbcCommand();
-                    OdbcTransaction transaction = null;
-                    transaction = connection.BeginTransaction();
-                    command.Connection = connection;
-                    command.Transaction = transaction;
+            OdbcConnection connection = new OdbcConnection(myConnection);
+            connection.Open();
+            OdbcCommand command = new OdbcCommand();
+            OdbcTransaction transaction = null;
+            transaction = connection.BeginTransaction();
+            command.Connection = connection;
+            command.Transaction = transaction;
                     
-                    command.CommandText = "INSERT INTO Employee VALUES (SYS_GUID(), '" + name + "', '" + address + "', '" + managerID + "', '" + job + "', '" + cert + "',DATE'" + date_s + "','" + sal + "')";
+            command.CommandText = "INSERT INTO Employee VALUES (SYS_GUID(), '" + name + "', '" + address + "', '" + managerID + "', '" + job + "', '" + cert + "',DATE'" + date_s + "','" + sal + "')";
                     
-                    command.ExecuteNonQuery();
-                    transaction.Commit();
-                    command.Connection.Close();
-                    connection.Close();
-                    Load_List();
-                
-            
-
+            command.ExecuteNonQuery();
+            transaction.Commit();
+            command.Connection.Close();
+            connection.Close();
+            Load_List();
         }
 
 
