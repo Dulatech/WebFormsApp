@@ -46,7 +46,7 @@
             <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Add_Customer" />
             <br />
         </div>
-        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" >
+        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDeleting="ListView1_ItemDeleting" >
 
             <ItemTemplate>
 

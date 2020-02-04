@@ -130,5 +130,9 @@ namespace WebFormsApp
             Response.Redirect("CustomerServices.aspx");
         }
 
+        protected void ListView1_ItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+
+        }
     }
 }
