@@ -6,18 +6,14 @@
 <head runat="server">
     <title></title>
     <style>
-        #info {
-            display: none;
-        }
-
         #customer {
             border: solid 1pt black;
             width: 200px;
         }
 
-            #customer:hover {
-                background-color: gainsboro;
-            }
+        #customer:hover {
+            background-color: gainsboro;
+        }
     </style>
 
 </head>
@@ -53,7 +49,7 @@
             <br />
             <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Add_Customer" />
         </div>
-        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound">
+        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound" OnItemEditing="ListView1_ItemEditing">
 
             <ItemTemplate>
 
@@ -65,19 +61,19 @@
                         <br>
                         <%-- <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details" />--%>
                         <button type="button" id="ButtonDet" onclick="details(this)">Details</button>
-                        <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName='<%#Eval("ID") + "," +  Eval("Address") + "," + Eval("Birthdate") + "," + Eval("Gender")%>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
+                        <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName="Delete" CommandArgument='<%#Eval("ID")%>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
                     </div>
-                    <div class="info" id="info">
+                    <div class="info" id="info" style="display: none;">
                         <br>
-                        <asp:TextBox ID="TextBox4" runat="server" placeholder='<%# Eval("Name") %>'> </asp:TextBox>
+                        <asp:TextBox ID="EditName" runat="server" placeholder='<%# Eval("Name") %>'> </asp:TextBox>
                         <br>
-                        <asp:TextBox runat="server" placeholder='<%# Eval("Address") %>'></asp:TextBox>
+                        <asp:TextBox ID="EditAddress" runat="server" placeholder='<%# Eval("Address") %>'></asp:TextBox>
                         <br>
 
-                        <asp:TextBox ID="Date" TextMode="Date" runat="server" Text='<%# Eval("Birthdate") %>'></asp:TextBox>
+                        <asp:TextBox ID="EditDate" TextMode="Date" runat="server" Text='<%# Eval("Birthdate") %>'></asp:TextBox>
                         <br>
-                        <asp:TextBox runat="server" placeholder='<%# "Gender: "+ Eval("Gender") %> '></asp:TextBox>
-                        <asp:Button ID="ButtonEdit" runat="server" Text="Edit" />
+                        <asp:TextBox ID="EditGender" runat="server" placeholder='<%# "Gender: "+ Eval("Gender") %> '></asp:TextBox>
+                        <asp:Button ID="ButtonEdit" runat="server" Text="Edit" formnovalidate="formnovalidate" CommandName="Edit" CommandArgument='<%#Eval("ID")%>'/>
                         <br>
                     </div>
                 </div>
