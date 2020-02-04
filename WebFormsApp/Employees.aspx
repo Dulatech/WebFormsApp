@@ -6,85 +6,105 @@
 <head runat="server">
     <title></title>
     <style>
-        #info{
-            /*display:none;*/
+        #info {
+            display:none;
         }
-         #employee{
+
+        #employee {
             border: solid 1pt black;
             width: 200px;
         }
+
             #employee:hover {
                 background-color: gainsboro;
             }
-
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            <asp:Button ID="Button1" runat="server" Text="Home Page" OnClick="Home_Click"/>
+
+         <asp:Button ID="Button1" formnovalidate="formnovalidate" runat="server" Text="Home Page" OnClick="Home_Click" />
+         <asp:Button ID="Button3" formnovalidate="formnovalidate" runat="server" Text="Customers" OnClick="Button1_Click" />
+        <asp:Button ID="Button4" formnovalidate="formnovalidate" runat="server" Text="Employees" OnClick="Button2_Click" BackColor="#CCCCCC" />
+        <asp:Button ID="Button5" formnovalidate="formnovalidate" runat="server" Text="Services" OnClick="Button3_Click" />
+        <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" Text="CustomerServices" OnClick="Button4_Click" />
+        <br />
+        <br />
+        <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
+        <br />
+        <div id="former">
+            <asp:TextBox ID="TextBox1" placeholder="Name" runat="server" required="required"></asp:TextBox>
             <br />
-                <asp:TextBox ID="TextBox1" placeholder="Name" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="TextBox2" placeholder="Address" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="TextBox3" placeholder="Manger ID" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="TextBox4" placeholder="Job Title" runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="TextBox5" placeholder="Certified For" runat="server"></asp:TextBox>
-                <br />
-               <asp:TextBox ID="TextBox6" TextMode="Date"  runat="server"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="TextBox7" placeholder="Salary" runat="server"></asp:TextBox>
-                <br />
-                <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Add_Customer" />
-                <br />
-                <br />
-         </div>
+            <asp:TextBox ID="TextBox2" placeholder="Address" runat="server" required="required"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="TextBox3" placeholder="Manger ID" runat="server" required="required"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="TextBox4" placeholder="Job Title" runat="server" required="required"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="TextBox5" placeholder="Certified For" runat="server" required="required"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Start Date: "></asp:Label>
+            <asp:TextBox ID="TextBox6" TextMode="Date" runat="server" required="required"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="TextBox7" placeholder="Salary" runat="server" required="required"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="TextBox7" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
+            <br />
+            <br />
+            <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Add_Customer" />
+
+        </div>
 
 
-        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" > 
-           
-                <ItemTemplate>
-                   
-                   
-                    <div id ="employee">
-                         <div id ="basics">
-                    
-                     <asp:Label ID="Lab" runat="server" Text='<%# Eval("Name") %>'> </asp:Label>
+        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound">
+
+            <ItemTemplate>
+
+
+                <div id="employee">
+                    <div id="basics">
+
+                        <asp:Label ID="Lab" runat="server" Text='<%# Eval("Name") %>'> </asp:Label>
                         <br>
-                         <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details"/>
-                       
-                         <asp:Button ID="ButtonDel" CommandName='<%#Eval("ID") + "," +  Eval("Address") + "," + Eval("ManagerID") + "," + Eval("JobTitle") + "," + Eval("CertifiedFor")%>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
-                      </div>
-                        <div class="info" id ="info" >
-                         <br> 
-                         <asp:TextBox ID="TextBox4" runat="server" Text='<%# Eval("Name") %>'> </asp:TextBox>
-                    <br> 
-                     <asp:TextBox runat="server" Text='<%# Eval("Address") %>'></asp:TextBox> 
-                    <br>
-                            <asp:TextBox runat="server" Text='<%# Eval("ManagerID") %>'></asp:TextBox> 
-                    <br>
-                             <asp:TextBox runat="server" Text='<%# Eval("JobTitle") %>'></asp:TextBox> 
-                    <br>
-                             <asp:TextBox runat="server" Text='<%# Eval("CertifiedFor") %>'></asp:TextBox> 
-                    <br>
-                    
-                         <asp:TextBox TextMode="Date"  runat="server" Text='<%# Eval("StartDate") %>'></asp:TextBox>
-                     <br>
-                    <asp:TextBox runat="server" Text='<%# Eval("Salary") %>'></asp:TextBox>
-                          <asp:Button ID="ButtonEdit" runat="server" Text="Edit"/>
-                          <br>
+                         <%-- <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details" />--%>
+                         <button  type="button" id="ButtonDet" onclick="details(this)">Details</button>
+                        <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName='<%#Eval("ID") + "," +  Eval("Address") + "," + Eval("ManagerID") + "," + Eval("JobTitle") + "," + Eval("CertifiedFor")%>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
+                    </div>
+                    <div class="info" id="info">
+                        <br>
+                        <asp:TextBox ID="TextBox4" runat="server" placeholder='<%# Eval("Name") %>'> </asp:TextBox>
+                        <br>
+                        <asp:TextBox runat="server" placeholder='<%# Eval("Address") %>'></asp:TextBox>
+                        <br>
+                        <asp:TextBox runat="server" placeholder='<%# Eval("ManagerID") %>'></asp:TextBox>
+                        <br>
+                        <asp:TextBox runat="server" placeholder='<%# Eval("JobTitle") %>'></asp:TextBox>
+                        <br>
+                        <asp:TextBox runat="server" placeholder='<%# Eval("CertifiedFor") %>'></asp:TextBox>
+                        <br>
 
-                         
-                          </div>
-                     </div>
-             <br>
+                        <asp:TextBox ID="Date" TextMode="Date" runat="server" Text='<%# Eval("StartDate") %>'></asp:TextBox>
+                        <br>
+                        <asp:TextBox runat="server" placeholder='<%# Eval("Salary") %>'></asp:TextBox>
+                        <asp:Button ID="ButtonEdit" runat="server" Text="Edit" />
+                        <br>
+                    </div>
+                </div>
+                <br>
             </ItemTemplate>
         </asp:ListView>
 
     </form>
+    <script>
+         function details(el) {
+             var x = el.parentNode.nextElementSibling;
+             if (x.style.display === "none") {
+                 x.style.display = "block";
+             } else {
+                 x.style.display = "none";
+             }
+         }
+    </script>
 </body>
 </html>

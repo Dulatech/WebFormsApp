@@ -11,7 +11,18 @@ namespace WebFormsApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                string userID = Session["UserID"].ToString();
+                if (userID == null || userID == "")
+                {
+                    return;
+                }
+                else
+                {
+                    Label1.Text = userID;
+                }
+            }
         }
 
 
@@ -33,6 +44,11 @@ namespace WebFormsApp
         protected void Button4_Click(object sender, EventArgs e)
         {
             Response.Redirect("CustomerServices.aspx");
+        }
+
+        protected void Home_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HomePage.aspx");
         }
 
     }

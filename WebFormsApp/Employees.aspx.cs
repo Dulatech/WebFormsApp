@@ -113,5 +113,36 @@ namespace WebFormsApp
 
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Customers.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Employees.aspx");
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Services.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CustomerServices.aspx");
+        }
+
+        protected void OnRowDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+               
+                DateTime bytes2 = (DateTime)(e.Item.DataItem as DataRowView)["StartDate"];
+                (e.Item.FindControl("Date") as TextBox).Text = String.Format("{0:yyyy-MM-dd}", bytes2);
+
+            }
+        }
+
     }
 }

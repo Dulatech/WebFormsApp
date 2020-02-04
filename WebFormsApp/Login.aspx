@@ -10,9 +10,9 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:TextBox ID="TextBox1" placeholder="Username" runat="server" Width="200px"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" placeholder="Username"   required="required" runat="server" Width="200px"></asp:TextBox>
         <p>
-        <asp:TextBox ID="TextBox2" placeholder="Password" TextMode="Password" runat="server" Width="200px" ></asp:TextBox>
+        <asp:TextBox ID="TextBox2" placeholder="Password"  required="required" TextMode="Password" runat="server" Width="200px" ></asp:TextBox>
         </p>
         <p>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Login" Height="26px" Width="69px" />

@@ -32,6 +32,7 @@ namespace WebFormsApp
                 }
 
                 Load_List();
+                RadioButtonList1.SelectedIndex = 0;
             }
 
         }
@@ -114,6 +115,8 @@ namespace WebFormsApp
                 byte[] bytes = (byte[])(e.Item.DataItem as DataRowView)["Picture"];
                 string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
                 (e.Item.FindControl("pictureControlID") as Image).ImageUrl = "data:image/png;base64," + base64String;
+                DateTime bytes2 = (DateTime)(e.Item.DataItem as DataRowView)["Birthdate"];
+                (e.Item.FindControl("Date") as TextBox).Text = String.Format("{0:yyyy-MM-dd}", bytes2);
 
             }
         }
@@ -135,6 +138,26 @@ namespace WebFormsApp
             myConn.Close();
             Load_List();
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Customers.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Employees.aspx");
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Services.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CustomerServices.aspx");
         }
 
 
