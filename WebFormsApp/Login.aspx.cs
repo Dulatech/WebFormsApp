@@ -46,6 +46,10 @@ namespace WebFormsApp
             if (isValid)
             {
                 Response.Redirect("HomePage.aspx");
+            } else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Invalid username / password')", true);
+
             }
         }
 

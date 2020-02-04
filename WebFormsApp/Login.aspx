@@ -19,7 +19,8 @@
          <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" Height="26px" Width="69px" />
         </p>
         <p>
-            &nbsp;</p>
+            <asp:Label ID="Label1" runat="server"></asp:Label>
+        </p>
     </form>
 </body>
 </html>
