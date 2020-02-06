@@ -20,6 +20,7 @@ namespace WebFormsApp
         protected void Page_Load(object sender, EventArgs e)
         {
             ListView1.ItemCommand += new EventHandler<ListViewCommandEventArgs>(ListView1_ItemCommand);
+
             if (!Page.IsPostBack)
             {
                 string userID = Session["UserID"].ToString();
@@ -34,6 +35,7 @@ namespace WebFormsApp
                     Label2.Text = name;
             }
                 Load_List();
+                Load_Drop();
             }
         }
 
@@ -57,13 +59,58 @@ namespace WebFormsApp
             //}
         }
 
+        protected void OnRowDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                string bytes2 = (string)(e.Item.DataItem as DataRowView)["ServiceTypeID"];
+                string name = "";
+                string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
+                OdbcConnection myConn = new OdbcConnection(myConnection);
+                myConn.Open();
+                string mySelectQuery = "Select Name from ServiceType WHERE ID='" + bytes2 + "'";
+                OdbcCommand command = new OdbcCommand(mySelectQuery, myConn);
+                OdbcDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    name = reader.GetString(0);
+
+
+                }
+                (e.Item.FindControl("Label2") as Label).Text = name;
+
+
+            }
+        }
+
+        protected void Load_Drop()
+        {
+            string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
+            OdbcConnection myConn = new OdbcConnection(myConnection);
+            myConn.Open();
+            string mySelectQuery = "Select Name from ServiceType";
+            OdbcCommand command = new OdbcCommand(mySelectQuery, myConn);
+
+
+            using (OdbcDataAdapter sda = new OdbcDataAdapter(command))
+            {
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                DropDownList1.DataSource = dt;
+                DropDownList1.DataTextField = "Name";
+                DropDownList1.DataBind();
+            }
+            myConn.Close();
+            //}
+        }
+
 
         protected void Add_Customer(object sender, EventArgs e)
         {
 
 
 
-            string servID = TextBox2.Text;
+            string servID = find_id(DropDownList1.Text);
             string dur = TextBox3.Text;
 
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
@@ -85,6 +132,23 @@ namespace WebFormsApp
 
 
 
+        }
+
+        protected string find_id(string s)
+        {
+            string id = "";
+             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";
+            OdbcConnection myConn = new OdbcConnection(myConnection);
+            myConn.Open();
+            string mySelectQuery = "Select ID from ServiceType WHERE Name='" +s +"'";
+            OdbcCommand command = new OdbcCommand(mySelectQuery, myConn);
+            OdbcDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetString(0);
+                
+            }
+            return id;
         }
 
         protected void Home_Click(object sender, EventArgs e)

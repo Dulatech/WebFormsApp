@@ -6,9 +6,6 @@
 <head runat="server">
     <title></title>
     <style>
-        #info {
-            display:none;
-        }
 
         #custServ {
             border: solid 1pt black;
@@ -34,7 +31,8 @@
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
-            <asp:TextBox ID="TextBox2" placeholder="Service ID" runat="server" required="required"></asp:TextBox>
+             <asp:DropDownList ID="DropDownList1" runat="server" Height="22px" Width="127px">
+             </asp:DropDownList>
             <br />
             <asp:TextBox ID="TextBox3" placeholder="Expected Time (Minutes)" runat="server" required="required"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="TextBox3" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
@@ -48,7 +46,7 @@
          <asp:Label ID="Label4" runat="server" Text="Customer: "></asp:Label>
         <asp:Label ID="Label2" runat="server" Text='Label'> </asp:Label>
         <br />
-        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDeleting="ListView1_ItemDeleting" >
+        <asp:ListView ItemPlaceholderID="Test" runat="server" ID="ListView1" OnItemDataBound="OnRowDataBound" OnItemDeleting="ListView1_ItemDeleting" >
 
             <ItemTemplate>
 
@@ -60,17 +58,14 @@
                         <%-- <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details" />--%>
                          <button  type="button" id="ButtonDet" onclick="details(this)">Details</button>
                         <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName='<%#Eval("CustomerID") + "," +  Eval("ServiceTypeID") %>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
-                    </div>
-                    <div class="info" id="info">
-                        <br>
-                        <asp:TextBox runat="server" placeholder='<%# Eval("ServiceTypeID") %>'></asp:TextBox>
-                        <br>
-
-                        <asp:TextBox runat="server" placeholder='<%# Eval("ExpectedDuration") + " Minutes" %>'></asp:TextBox>
+                        </div>
+                        <div class="info" id="info" style="display: none;">
 
                         <br>
 
-                        <asp:Button ID="ButtonEdit" runat="server" Text="Edit" />
+                        <asp:Label runat="server" Text='<%# Eval("ExpectedDuration") + " Minutes" %>'></asp:Label>
+
+
                         <br>
                     </div>
                 </div>

@@ -119,10 +119,19 @@ namespace WebFormsApp
         {
             string id = (string)e.CommandArgument;
             string stmtString = "";
+            string stmtString2 = "";
             switch(e.CommandName)
             {
                 case "Delete":
                     stmtString = "DELETE FROM Customer WHERE ID ='" + id + "'";
+                    stmtString2 = "DELETE FROM CustomerService WHERE CustomerID ='" + id + "'";
+                    string myConnection2 = "dsn=mySqlServer;uid=system;pwd=oracle1";
+                    OdbcConnection myConn2 = new OdbcConnection(myConnection2);
+                    myConn2.Open();
+                    OdbcCommand command2 = new OdbcCommand(stmtString2, myConn2);
+                    command2.ExecuteNonQuery();
+                    command2.Connection.Close();
+                    myConn2.Close();
                     break;
 
                 case "Edit":
