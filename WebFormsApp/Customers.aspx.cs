@@ -82,6 +82,12 @@ namespace WebFormsApp
             Response.Redirect("HomePage.aspx");
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
+
         protected void Load_List()
         {
                 string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";

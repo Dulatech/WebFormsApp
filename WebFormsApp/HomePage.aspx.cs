@@ -25,6 +25,12 @@ namespace WebFormsApp
             }
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {

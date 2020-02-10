@@ -156,6 +156,12 @@ namespace WebFormsApp
             Response.Redirect("HomePage.aspx");
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
+
         void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             String str = (String)e.CommandName;
