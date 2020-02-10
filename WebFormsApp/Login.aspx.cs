@@ -17,7 +17,7 @@ namespace WebFormsApp
             
             if (!Page.IsPostBack)
             {
-
+                Session["UserID"] = "";
             }
         }
 

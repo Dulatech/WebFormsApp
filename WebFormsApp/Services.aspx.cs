@@ -16,6 +16,7 @@ namespace WebFormsApp
                 string userID = Session["UserID"].ToString();
                 if (userID == null || userID == "")
                 {
+                    Response.Redirect("Login.aspx");
                     return;
                 }
                 else

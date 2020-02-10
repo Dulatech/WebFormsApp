@@ -24,9 +24,15 @@ namespace WebFormsApp
             if (!Page.IsPostBack)
             {
                 string userID = Session["UserID"].ToString();
+                if (userID == null || userID == "")
+                {
+                    Response.Redirect("Login.aspx");
+                    return;
+                }
                 string name = Session["CustName"].ToString();
                 if (userID == null || userID == "")
                 {
+                    Response.Redirect("Login.aspx");
                     return;
                 }
                 else
