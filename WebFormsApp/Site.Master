@@ -14,7 +14,48 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        #customer {
+            border: solid 1pt black;
+            width: 200px;
+        }
 
+        #customer:hover {
+            background-color: gainsboro;
+        }
+
+        
+        #info {
+            display:none;
+        }
+
+        #employee {
+            border: solid 1pt black;
+            width: 200px;
+        }
+
+        #employee:hover {
+            background-color: gainsboro;
+        }
+
+        #service {
+            border: solid 1pt black;
+            width: 200px;
+        }
+
+        #service:hover {
+            background-color: gainsboro;
+        }
+
+        #custServ {
+            border: solid 1pt black;
+            width: 200px;
+        }
+
+        #custServ:hover {
+            background-color: gainsboro;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -46,13 +87,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="~/">COMP4945 Asn3</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/HomePage">Home</a></li>
+                        <li><a runat="server" href="~/Customers">Customers</a></li>
+                        <li><a runat="server" href="~/Employees">Employees</a></li>
+                        <li><a runat="server" href="~/Services">Services</a></li>
+                        <li><a runat="server" href="~/CustomerServices">Customer Services</a></li>
                     </ul>
                 </div>
             </div>
