@@ -5,6 +5,7 @@
     <br />
     <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <asp:Button ID="Button7" formnovalidate="formnovalidate" runat="server" Text="Logout" OnClick="Logout" />
     <br />
     <br />
     <div id="former">
@@ -34,6 +35,7 @@
                     <%-- <asp:Button class="butt" ID="ButtonDet" runat="server" Text="Details" />--%>
                     <button type="button" id="ButtonDet" onclick="details(this)">Details</button>
                     <asp:Button ID="ButtonDel" formnovalidate="formnovalidate" CommandName="Delete" CommandArgument='<%#Eval("ID")%>' runat="server" Text="Delete" BackColor="Red" ForeColor="Black" />
+                <asp:Button ID="Button6" formnovalidate="formnovalidate" runat="server" CommandName="Transport" CommandArgument='<%#Eval("ID")+ "," +  Eval("Name")%>' Text="CustomerServices" />
                 </div>
                 <div class="info" id="info" style="display: none;">
                     <br>

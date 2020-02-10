@@ -5,6 +5,7 @@
     <br />
     <asp:Label ID="Label3" runat="server" Text="User:"></asp:Label>
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <asp:Button ID="Button7" formnovalidate="formnovalidate" runat="server" Text="Logout" OnClick="Logout" />
     <br />
     <br />
     <div>

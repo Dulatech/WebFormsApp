@@ -44,6 +44,11 @@ namespace WebFormsApp
             myConn.Close();
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
         protected void Home_Click(object sender, EventArgs e)
         {
             Response.Redirect("HomePage.aspx");

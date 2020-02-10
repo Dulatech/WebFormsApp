@@ -115,14 +115,29 @@ namespace WebFormsApp
             }
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
+
         void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             string id = (string)e.CommandArgument;
             string stmtString = "";
-            switch(e.CommandName)
+            string stmtString2 = "";
+            switch (e.CommandName)
             {
                 case "Delete":
                     stmtString = "DELETE FROM Customer WHERE ID ='" + id + "'";
+                    stmtString2 = "DELETE FROM CustomerService WHERE CustomerID ='" + id + "'";
+                    string myConnection2 = "dsn=mySqlServer;uid=system;pwd=oracle1";
+                    OdbcConnection myConn2 = new OdbcConnection(myConnection2);
+                    myConn2.Open();
+                    OdbcCommand command2 = new OdbcCommand(stmtString2, myConn2);
+                    command2.ExecuteNonQuery();
+                    command2.Connection.Close();
+                    myConn2.Close();
                     break;
 
                 case "Edit":
@@ -137,6 +152,14 @@ namespace WebFormsApp
                         ", Birthdate=DATE'" + newDateS + "'" +
                         ", Gender='" + newGender + "'" +
                         " WHERE ID='" + id + "'";
+                    break;
+                case "Transport":
+                    String str = id;
+
+                    string[] words = str.Split(',');
+                    Session["CustID"] = words[0];
+                    Session["CustName"] = words[1];
+                    Response.Redirect("CustomerServices.aspx");
                     break;
             }
             string myConnection = "dsn=mySqlServer;uid=system;pwd=oracle1";

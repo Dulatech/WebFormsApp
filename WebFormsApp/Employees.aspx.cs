@@ -26,6 +26,11 @@ namespace WebFormsApp
             }
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
 
         protected void Add_Customer(object sender, EventArgs e)
         {
