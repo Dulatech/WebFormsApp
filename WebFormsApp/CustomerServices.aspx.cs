@@ -14,22 +14,15 @@ namespace WebFormsApp
 
             if (!Page.IsPostBack)
             {
-                string userID = Session["UserID"].ToString();
-                if (userID == null || userID == "")
-                {
-                    Response.Redirect("Login.aspx");
-                    return;
-                }
-                string name = Session["CustName"].ToString();
-                if (userID == null || userID == "")
+                if (Session["UserID"] == null || Session["CustName"] == null)
                 {
                     Response.Redirect("Login.aspx");
                     return;
                 }
                 else
                 {
-                    Label1.Text = userID;
-                    Label2.Text = name;
+                    Label1.Text = Session["UserID"].ToString();
+                    Label2.Text = Session["CustName"].ToString();
                 }
                 Load_List();
                 Load_Drop();
